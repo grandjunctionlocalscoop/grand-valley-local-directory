@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="data:," />
+    <meta name="description" content="The Grand Valley Local Directory by Grand Junction Local Scoop — free listings for local businesses in Grand Junction, Clifton, Fruita and Palisade, Colorado." />
+    <title>Grand Valley Local Directory — by Grand Junction Local Scoop</title>
+    <style>
+      :root {
+        --cream: #FBEFD6;
+        --cream-deep: #F5E3BE;
+        --paper: #FFF9EC;
+        --paper-warm: #FDF3DC;
+        --rust: #B25420;
+        --rust-dark: #8F3F14;
+        --rust-soft: #F3D9C4;
+        --ink: #26201C;
+        --ink-soft: #57493E;
+        --ink-faint: #8A7867;
+        --line: #E3CFA5;
+        --line-strong: #26201C;
+        --gold: #C98F2D;
+        --radius: 10px;
+        --shadow: 0 1px 2px rgba(38,32,28,.06), 0 8px 24px -18px rgba(38,32,28,.35);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Avenir Next", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--rust-dark); }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+        outline: 3px solid var(--rust);
+        outline-offset: 2px;
+      }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- Masthead ---------- */
+      .masthead {
+        border-bottom: 3px double var(--line-strong);
+        padding: 34px 0 26px;
+      }
+      .masthead-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .brand-kicker {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: var(--rust);
+        margin: 0 0 8px;
+      }
+      h1 {
+        font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+        font-size: clamp(34px, 6vw, 54px);
+        line-height: 1.05;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: -.01em;
+      }
+      .byline {
+        font-family: Georgia, "Iowan Old Style", serif;
+        font-style: italic;
+        font-size: clamp(16px, 2.4vw, 20px);
+        color: var(--ink-soft);
+        margin: 8px 0 0;
+      }
+      .byline strong { color: var(--rust-dark); font-style: normal; }
+      .subscribe-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--rust);
+        color: #FFF7E8;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 15px;
+        padding: 13px 22px;
+        border-radius: 999px;
+        box-shadow: var(--shadow);
+        white-space: nowrap;
+        margin-top: 6px;
+      }
+      .subscribe-btn:hover { background: var(--rust-dark); }
+      .intro {
+        font-size: clamp(16px, 2.2vw, 19px);
+        color: var(--ink-soft);
+        max-width: 68ch;
+        margin: 20px 0 0;
+      }
+      .intro strong { color: var(--ink); }
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 26px;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+      .stats b {
+        font-family: Georgia, serif;
+        font-size: 20px;
+        color: var(--rust-dark);
+        margin-right: 6px;
+      }
+
+      /* ---------- Filter bar ---------- */
+      .filters {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--cream);
+        padding: 16px 0 14px;
+        border-bottom: 1px solid var(--line);
+      }
+      .filters-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      @media (min-width: 720px) {
+        .filters-grid { grid-template-columns: 2fr 1fr 1fr; }
+      }
+      .field label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin-bottom: 5px;
+      }
+      .field input, .field select {
+        width: 100%;
+        font: inherit;
+        font-size: 16px;
+        color: var(--ink);
+        background: var(--paper);
+        border: 1.5px solid var(--line);
+        border-radius: var(--radius);
+        padding: 11px 13px;
+        appearance: none;
+      }
+      .field select {
+        background-image: linear-gradient(45deg, transparent 50%, var(--rust) 50%), linear-gradient(135deg, var(--rust) 50%, transparent 50%);
+        background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%;
+        background-size: 5px 5px;
+        background-repeat: no-repeat;
+        padding-right: 34px;
+      }
+      .field input::placeholder { color: var(--ink-faint); }
+      .result-line {
+        font-size: 14px;
+        color: var(--ink-soft);
+        margin: 12px 0 0;
+        min-height: 1.4em;
+      }
+      .result-line button {
+        background: none;
+        border: none;
+        font: inherit;
+        color: var(--rust-dark);
+        font-weight: 700;
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      /* ---------- Category sections ---------- */
+      .category { padding: 30px 0 6px; }
+      .category-head {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        border-bottom: 2px solid var(--line-strong);
+        padding-bottom: 8px;
+        margin-bottom: 18px;
+      }
+      .category-head h2 {
+        font-family: Georgia, "Iowan Old Style", serif;
+        font-size: clamp(23px, 3.4vw, 30px);
+        margin: 0;
+        font-weight: 700;
+      }
+      .category-head .count {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--rust);
+        white-space: nowrap;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      @media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 980px) { .cards { grid-template-columns: 1fr 1fr 1fr; } }
+      @media (min-width: 640px) { .card.premium { grid-column: span 2; } }
+      @media (min-width: 980px) { .card.premium img.photo { height: 210px; } }
+
+      .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px 18px 14px;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .card.premium {
+        border: 2px solid var(--rust);
+        background: #fffdf4;
+      }
+      .premium-tag {
+        align-self: flex-start;
+        background: var(--rust);
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 10px;
+      }
+      .card.premium img.photo {
+        width: 100%;
+        height: 160px;
+        object-fit: contain;
+        background: #111;
+        border-radius: 8px;
+      }
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .card h3 {
+        font-family: Georgia, "Iowan Old Style", serif;
+        font-size: 19px;
+        line-height: 1.25;
+        margin: 0;
+        font-weight: 700;
+      }
+      .town {
+        flex: none;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: var(--rust-dark);
+        background: var(--rust-soft);
+        border-radius: 999px;
+        padding: 4px 10px;
+        margin-top: 2px;
+      }
+      .card p { margin: 0; font-size: 15px; color: var(--ink-soft); flex: 1; }
+      .card-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 18px;
+        border-top: 1px solid var(--line);
+        padding-top: 11px;
+        margin-top: 4px;
+        font-size: 14px;
+      }
+      .site-link { font-weight: 700; text-decoration: none; }
+      .site-link:hover { text-decoration: underline; }
+      .claim-link { color: var(--ink-soft); text-decoration: none; }
+      .claim-link:hover { color: var(--rust-dark); text-decoration: underline; }
+
+      .card-featured {
+        background: var(--paper-warm);
+        border: 1.5px dashed var(--rust);
+        border-radius: var(--radius);
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .card-featured .slot-tag {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+        color: var(--rust);
+      }
+      .card-featured h3 {
+        font-family: Georgia, serif;
+        font-size: 19px;
+        margin: 0;
+      }
+      .card-featured h3 .price { color: var(--rust-dark); }
+      .card-featured p { margin: 0; font-size: 15px; color: var(--ink-soft); flex: 1; }
+      .featured-btn {
+        align-self: flex-start;
+        display: inline-block;
+        background: var(--ink);
+        color: var(--cream);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 9px 16px;
+        border-radius: 999px;
+      }
+      .featured-btn:hover { background: var(--rust-dark); }
+
+      .empty-state {
+        display: none;
+        text-align: center;
+        padding: 54px 20px;
+        color: var(--ink-soft);
+      }
+      .empty-state.show { display: block; }
+      .empty-state h2 { font-family: Georgia, serif; font-size: 24px; color: var(--ink); margin: 0 0 8px; }
+      .empty-state button {
+        margin-top: 14px;
+        background: var(--rust);
+        color: #FFF7E8;
+        border: none;
+        font: inherit;
+        font-weight: 700;
+        padding: 11px 20px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+
+      /* ---------- Pricing strip ---------- */
+      .pricing {
+        margin: 44px 0 0;
+        background: var(--ink);
+        color: var(--cream);
+        border-radius: 14px;
+        padding: 30px 28px;
+      }
+      .pricing h2 {
+        font-family: Georgia, serif;
+        font-size: clamp(22px, 3.4vw, 29px);
+        margin: 0 0 6px;
+        color: #FFF7E8;
+      }
+      .pricing .pricing-sub { margin: 0 0 22px; color: #D9C7A8; font-size: 15px; }
+      .tiers {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      @media (min-width: 760px) { .tiers { grid-template-columns: repeat(3, 1fr); } }
+      .tier {
+        border: 1px solid #57493E;
+        border-radius: var(--radius);
+        padding: 18px;
+        background: #2E2721;
+      }
+      .tier .tier-price {
+        font-family: Georgia, serif;
+        font-size: 30px;
+        color: #FFF7E8;
+        line-height: 1.1;
+      }
+      .tier .tier-price span { font-size: 15px; color: #D9C7A8; }
+      .tier h3 { margin: 6px 0 6px; font-size: 16px; color: var(--gold); letter-spacing: .02em; }
+      .tier p { margin: 0; font-size: 14px; color: #D9C7A8; }
+      .tier.free { border-color: var(--rust); }
+      .pricing-note {
+        margin: 20px 0 0;
+        font-size: 14px;
+        color: #D9C7A8;
+      }
+      .pricing-note strong { color: #FFF7E8; }
+
+      /* ---------- Sponsor + footer ---------- */
+      .sponsor {
+        margin: 26px 0 0;
+        border: 2px solid var(--line-strong);
+        border-radius: 14px;
+        background: var(--paper);
+        padding: 24px 26px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px 26px;
+        justify-content: space-between;
+      }
+      .sponsor .sponsor-tag {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin: 0 0 4px;
+      }
+      .sponsor h2 { font-family: Georgia, serif; font-size: 22px; margin: 0 0 4px; }
+      .sponsor p { margin: 0; color: var(--ink-soft); font-size: 15px; max-width: 52ch; }
+      .sponsor-contact { text-align: left; }
+      .sponsor-contact .phone {
+        font-family: Georgia, serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--rust-dark);
+        text-decoration: none;
+        display: block;
+      }
+      .sponsor-contact .site { font-weight: 700; }
+      footer {
+        padding: 30px 0 44px;
+        text-align: center;
+        color: var(--ink-faint);
+        font-size: 14px;
+      }
+      footer a { font-weight: 700; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="wrap">
+        <div class="masthead-row">
+          <div>
+            <p class="brand-kicker">Grand Junction Local Scoop presents</p>
+            <h1>Grand Valley Local Directory</h1>
+            <p class="byline">by <strong>Grand Junction Local Scoop</strong> — the valley's hometown newsletter</p>
+          </div>
+          <a class="subscribe-btn" href="https://grandjunctionlocalscoop.beehiiv.com">Subscribe to the Scoop →</a>
+        </div>
+        <p class="intro">A free local directory for <strong>Grand Junction, Clifton, Fruita &amp; Palisade</strong>. Every business listed here is listed <strong>free</strong> — find a plumber, a pizza, a bike shop or a bottle of Palisade wine, all in one place.</p>
+        <div class="stats" aria-label="Directory at a glance">
+          <div><b>28</b> local businesses</div>
+          <div><b>12</b> categories</div>
+          <div><b>4</b> valley towns</div>
+          <div><b>$0</b> to be listed</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="filters">
+      <div class="wrap">
+        <div class="filters-grid">
+          <div class="field">
+            <label for="search">Search the directory</label>
+            <input id="search" type="search" placeholder="Try “pizza”, “plumber”, “bike”, a business name…" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter">
+              <option value="">All categories</option>
+              <option value="restaurants">Restaurants &amp; Dining</option>
+              <option value="coffee">Coffee, Bakeries &amp; Sweets</option>
+              <option value="breweries">Breweries &amp; Wineries</option>
+              <option value="home-services">Home Services</option>
+              <option value="auto">Auto Care</option>
+              <option value="health">Health &amp; Wellness</option>
+              <option value="pets">Pets</option>
+              <option value="bikes">Bikes &amp; Outdoors</option>
+              <option value="real-estate">Real Estate &amp; Mortgage</option>
+              <option value="events">Events &amp; Venues</option>
+              <option value="cleaning">Cleaning Services</option>
+              <option value="photography">Photography</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="townFilter">Town</label>
+            <select id="townFilter">
+              <option value="">All towns</option>
+              <option value="Grand Junction">Grand Junction</option>
+              <option value="Clifton">Clifton</option>
+              <option value="Fruita">Fruita</option>
+              <option value="Palisade">Palisade</option>
+            </select>
+          </div>
+        </div>
+        <p class="result-line" id="resultLine" role="status"></p>
+      </div>
+    </div>
+
+    <main class="wrap" id="directory">
+
+      <!-- RESTAURANTS & DINING -->
+      <section class="category" data-category="restaurants" data-category-name="Restaurants & Dining">
+        <div class="category-head"><h2>Restaurants &amp; Dining</h2><span class="count">5 listings</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>The Roost Kitchen &amp; Bar</h3><span class="town">Grand Junction</span></div>
+            <p>Mediterranean favorites + Colorado beef burgers, 225 N Fifth St</p>
+            <div class="card-links">
+              <a class="site-link" href="https://theroostgj.com" target="_blank" rel="noopener">theroostgj.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Bin 707 Foodbar</h3><span class="town">Grand Junction</span></div>
+            <p>2025 “Hospy” Restaurant of the Year, 400 Main St</p>
+            <div class="card-links">
+              <a class="site-link" href="https://bin707.com" target="_blank" rel="noopener">bin707.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Suehiro Japanese Restaurant &amp; Sushi</h3><span class="town">Grand Junction</span></div>
+            <p>Traditional Japanese food &amp; sushi, 541 Main St</p>
+            <div class="card-links">
+              <a class="site-link" href="https://suehirosushigrandjunction.com" target="_blank" rel="noopener">suehirosushigrandjunction.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Clifton">
+            <div class="card-top"><h3>Starvin' Arvin's</h3><span class="town">Clifton</span></div>
+            <p>Famous hand-rolled cinnamon rolls, 3247 F Rd</p>
+            <div class="card-links">
+              <a class="site-link" href="https://starvin-arvins.com" target="_blank" rel="noopener">starvin-arvins.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Fruita">
+            <div class="card-top"><h3>Hot Tomato Pizza</h3><span class="town">Fruita</span></div>
+            <p>East Coast-style pizza, 124 N Mulberry St</p>
+            <div class="card-links">
+              <a class="site-link" href="https://hottomatopizza.com" target="_blank" rel="noopener">hottomatopizza.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Put your restaurant at the top of this category, in front of every Scoop reader browsing for dinner.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Restaurants%20%26%20Dining">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- COFFEE, BAKERIES & SWEETS -->
+      <section class="category" data-category="coffee" data-category-name="Coffee, Bakeries & Sweets">
+        <div class="category-head"><h2>Coffee, Bakeries &amp; Sweets</h2><span class="count">3 listings</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Kiln Coffee Bar</h3><span class="town">Grand Junction</span></div>
+            <p>Colorado craft roasters + Spirit Tea</p>
+            <div class="card-links">
+              <a class="site-link" href="https://kilncoffeebar.com" target="_blank" rel="noopener">kilncoffeebar.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>The Baker's Boutique / Gelato Junction</h3><span class="town">Grand Junction</span></div>
+            <p>Everything made in-house, including the gelato</p>
+            <div class="card-links">
+              <a class="site-link" href="https://bakersboutiquegj.com" target="_blank" rel="noopener">bakersboutiquegj.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Enstrom Candies</h3><span class="town">Grand Junction</span></div>
+            <p>World-famous almond toffee, 701 Colorado Ave</p>
+            <div class="card-links">
+              <a class="site-link" href="https://enstrom.com" target="_blank" rel="noopener">enstrom.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Own the top of Coffee, Bakeries &amp; Sweets — the first card every coffee drinker and sweet tooth sees.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Coffee%2C%20Bakeries%20%26%20Sweets">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- BREWERIES & WINERIES -->
+      <section class="category" data-category="breweries" data-category-name="Breweries & Wineries">
+        <div class="category-head"><h2>Breweries &amp; Wineries</h2><span class="count">4 listings</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Trail Life Brewing</h3><span class="town">Grand Junction</span></div>
+            <p>Craft brewery on Main St, 436 Main St</p>
+            <div class="card-links">
+              <a class="site-link" href="https://traillifebrewing.com" target="_blank" rel="noopener">traillifebrewing.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Palisade">
+            <div class="card-top"><h3>Palisade Brewing Company</h3><span class="town">Palisade</span></div>
+            <p>Beer in the middle of wine country; live music weekends</p>
+            <div class="card-links">
+              <a class="site-link" href="https://palisadebrewingcompany.com" target="_blank" rel="noopener">palisadebrewingcompany.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Palisade">
+            <div class="card-top"><h3>Talon Wines</h3><span class="town">Palisade</span></div>
+            <p>Every wine fermented, aged &amp; bottled on site, 3701 G Rd</p>
+            <div class="card-links">
+              <a class="site-link" href="https://talonwines.com" target="_blank" rel="noopener">talonwines.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Palisade">
+            <div class="card-top"><h3>Restoration Vineyards</h3><span class="town">Palisade</span></div>
+            <p>Wine club + live-music nights, 3594 E 1/2 Rd</p>
+            <div class="card-links">
+              <a class="site-link" href="https://restorationvineyards.com" target="_blank" rel="noopener">restorationvineyards.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Be the first pour in Breweries &amp; Wineries — the card visitors see before every brewery and winery in the valley.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Breweries%20%26%20Wineries">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- HOME SERVICES -->
+      <section class="category" data-category="home-services" data-category-name="Home Services">
+        <div class="category-head"><h2>Home Services</h2><span class="count">3 listings</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>GPS Plumbing &amp; Mechanical</h3><span class="town">Grand Junction</span></div>
+            <p>One-person shop; free estimates &amp; diagnostics, 1-year labor warranty</p>
+            <div class="card-links">
+              <a class="site-link" href="https://gpsplumbingco.com" target="_blank" rel="noopener">gpsplumbingco.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Specialized Plumbing Heating And Cooling</h3><span class="town">Grand Junction</span></div>
+            <p>30 years serving Mesa County</p>
+            <div class="card-links">
+              <a class="site-link" href="https://sphcpro.com" target="_blank" rel="noopener">sphcpro.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card premium" data-town="Grand Junction">
+            <span class="premium-tag">★ Premium</span>
+            <div class="card-top"><h3>The Lovely Reframe</h3><span class="town">Grand Junction</span></div>
+            <img class="photo" src="/images/lovely-reframe-logo.png" alt="The Lovely Reframe logo">
+            <p>Home organizing, move-in unpacking, and seasonal decorating in Grand Junction and nearby towns.</p>
+            <p>📞 <a href="tel:+19708526378">(970) 852-6378</a> · By appointment<br>📍 <a href="https://www.google.com/maps/search/?api=1&query=The+Lovely+Reframe+Grand+Junction+CO" target="_blank" rel="noopener">view on map</a></p>
+            <div class="card-links">
+              <a class="site-link" href="https://www.thelovelyreframe.com" target="_blank" rel="noopener">thelovelyreframe.com ↗</a>
+              <a class="site-link" href="https://facebook.com/thelovelyreframe" target="_blank" rel="noopener">Facebook ↗</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>When a pipe bursts, homeowners search here first. Put your shop at the top of Home Services.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Home%20Services">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- AUTO CARE -->
+      <section class="category" data-category="auto" data-category-name="Auto Care">
+        <div class="category-head"><h2>Auto Care</h2><span class="count">4 listings</span></div>
+        <div class="cards">
+          <article class="card premium" data-town="Grand Junction">
+            <span class="premium-tag">★ Premium</span>
+            <div class="card-top"><h3>K&amp;J Mobile Mechanic LLC</h3><span class="town">Grand Junction</span></div>
+            <img class="photo" src="/images/kj-mobile-mechanic.jpg" alt="K&J Mobile Mechanic LLC logo">
+            <p>Mobile mechanic — auto repair &amp; maintenance at your location, serving Mack, Loma, Fruita, Clifton, Palisade &amp; Grand Junction. Aiming to be the most reliable mobile mechanic in the valley — the best, and the cheapest.</p>
+            <p>📞 <a href="tel:+19709753953">970-975-3953</a> · Mon–Sat 10–6 (fall/winter), 9–8 (summer)<br>📍 Based in Mack — <a href="https://www.google.com/maps/search/?api=1&query=K%26J+Mobile+Mechanic+LLC+Mack+CO" target="_blank" rel="noopener">view on map</a></p>
+            <div class="card-links">
+              <a class="site-link" href="https://www.facebook.com/profile.php?id=61576856241097" target="_blank" rel="noopener">Facebook ↗</a>
+              <a class="site-link" href="https://www.instagram.com/k_jmobilegj" target="_blank" rel="noopener">Instagram ↗</a>
+            </div>
+          </article>
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>ColorAuto Detailing</h3><span class="town">Grand Junction</span></div>
+            <p>XPEL-certified paint protection, ceramic coating &amp; tint, 562 S Westgate Dr</p>
+            <div class="card-links">
+              <a class="site-link" href="https://colorautodetailing.com" target="_blank" rel="noopener">colorautodetailing.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Scotty's Complete Car Care Center</h3><span class="town">Grand Junction</span></div>
+            <p>Family-owned since 1979, 437 Pitkin Ave</p>
+            <div class="card-links">
+              <a class="site-link" href="https://scottyscompleteautorepair.com" target="_blank" rel="noopener">scottyscompleteautorepair.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Clifton">
+            <div class="card-top"><h3>Scott's Automotive &amp; Tire</h3><span class="town">Clifton</span></div>
+            <p>Auto repair &amp; tires, 3206 E Rd, Clifton</p>
+            <div class="card-links">
+              <a class="site-link" href="https://scottsauto.com" target="_blank" rel="noopener">scottsauto.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Top billing in Auto Care — seen by every driver in the valley looking for repair, tires or detailing.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Auto%20Care">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- HEALTH & WELLNESS -->
+      <section class="category" data-category="health" data-category-name="Health & Wellness">
+        <div class="category-head"><h2>Health &amp; Wellness</h2><span class="count">1 listing</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>ElevateRx MedSpa</h3><span class="town">Grand Junction</span></div>
+            <p>Nurse-practitioner-founded med spa; free consultations</p>
+            <div class="card-links">
+              <a class="site-link" href="https://elevaterxmedspa.com" target="_blank" rel="noopener">elevaterxmedspa.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Lead the Health &amp; Wellness category — the first name valley readers see when they book self-care.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Health%20%26%20Wellness">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- PETS -->
+      <section class="category" data-category="pets" data-category-name="Pets">
+        <div class="category-head"><h2>Pets</h2><span class="count">1 listing</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Chow Down Pet Supplies</h3><span class="town">Grand Junction</span></div>
+            <p>Grooming + self-service dog wash, 2500 Broadway Unit H</p>
+            <div class="card-links">
+              <a class="site-link" href="https://chowdownpetsupplies.com" target="_blank" rel="noopener">chowdownpetsupplies.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Pet people are loyal people. Put your shop at the top of Pets and meet them here first.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Pets">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- BIKES & OUTDOORS -->
+      <section class="category" data-category="bikes" data-category-name="Bikes & Outdoors">
+        <div class="category-head"><h2>Bikes &amp; Outdoors</h2><span class="count">2 listings</span></div>
+        <div class="cards">
+          <article class="card" data-town="Fruita">
+            <div class="card-top"><h3>Colorado Backcountry Biker</h3><span class="town">Fruita</span></div>
+            <p>Fruita's first bike shop; master mechanics &amp; hut-to-hut trips</p>
+            <div class="card-links">
+              <a class="site-link" href="https://backcountrybiker.com" target="_blank" rel="noopener">backcountrybiker.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Fruita">
+            <div class="card-top"><h3>Over The Edge Sports</h3><span class="town">Fruita</span></div>
+            <p>Bike shop at 202 E Aspen Ave</p>
+            <div class="card-links">
+              <a class="site-link" href="https://otefruita.com" target="_blank" rel="noopener">otefruita.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Riders plan trips around Fruita. Be the first shop they find in Bikes &amp; Outdoors.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Bikes%20%26%20Outdoors">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- REAL ESTATE & MORTGAGE -->
+      <section class="category" data-category="real-estate" data-category-name="Real Estate & Mortgage">
+        <div class="category-head"><h2>Real Estate &amp; Mortgage</h2><span class="count">2 listings</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>The Christi Reece Group</h3><span class="town">Grand Junction</span></div>
+            <p>Real estate team, 1601 Riverfront Dr Ste 103</p>
+            <div class="card-links">
+              <a class="site-link" href="https://christireece.com" target="_blank" rel="noopener">christireece.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Fidelity Mortgage Team (Benchmark Mortgage)</h3><span class="town">Grand Junction</span></div>
+            <p>Local mortgage team</p>
+            <div class="card-links">
+              <a class="site-link" href="https://fidelity.benchmark.us" target="_blank" rel="noopener">fidelity.benchmark.us ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>New movers read the Scoop. Put your team at the top of Real Estate &amp; Mortgage when they land.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Real%20Estate%20%26%20Mortgage">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- EVENTS & VENUES -->
+      <section class="category" data-category="events" data-category-name="Events & Venues">
+        <div class="category-head"><h2>Events &amp; Venues</h2><span class="count">1 listing</span></div>
+        <div class="cards">
+          <article class="card" data-town="Grand Junction">
+            <div class="card-top"><h3>Avalon Theatre</h3><span class="town">Grand Junction</span></div>
+            <p>Historic Main Street venue, 645 Main St</p>
+            <div class="card-links">
+              <a class="site-link" href="https://avalontheatregj.com" target="_blank" rel="noopener">avalontheatregj.com ↗</a>
+              <a class="claim-link" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Sell the night out. Lead Events &amp; Venues, where valley readers plan their weekends.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Events%20%26%20Venues">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- CLEANING SERVICES -->
+      <section class="category" data-category="cleaning" data-category-name="Cleaning Services">
+        <div class="category-head"><h2>Cleaning Services</h2><span class="count">1 listing</span></div>
+        <div class="cards">
+          <article class="card premium" data-town="Grand Junction">
+            <span class="premium-tag">★ Premium</span>
+            <div class="card-top"><h3>Maid for GJ</h3><span class="town">Grand Junction</span></div>
+            <img class="photo" src="/images/maid-for-gj-logo.jpg" alt="Maid for GJ logo">
+            <p>Local cleaning company — one-time and recurring cleans for homes and businesses, plus Airbnb turnovers and move-in/move-out cleans across the valley.</p>
+            <p>📞 <a href="tel:+19702011421">970-201-1421</a><br>📍 <a href="https://www.google.com/maps/search/?api=1&query=Maid+for+GJ+Grand+Junction+CO" target="_blank" rel="noopener">view on map</a></p>
+            <div class="card-links">
+              <a class="site-link" href="https://maidforgj.com" target="_blank" rel="noopener">maidforgj.com ↗</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Hosts and homeowners book cleaners they find first. Put your crew at the top of Cleaning Services.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Cleaning%20Services">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- PHOTOGRAPHY -->
+      <section class="category" data-category="photography" data-category-name="Photography">
+        <div class="category-head"><h2>Photography</h2><span class="count">1 listing</span></div>
+        <div class="cards">
+          <article class="card premium" data-town="Grand Junction">
+            <span class="premium-tag">★ Premium</span>
+            <div class="card-top"><h3>Heinemann Images International</h3><span class="town">Grand Junction</span></div>
+            <img class="photo" src="/images/heinemann-logo.png" alt="Heinemann Images International logo">
+            <p>Family portraits, weddings, and commercial photography for industry, events and businesses — based in Grand Junction, serving the whole Grand Valley and Western Slope.</p>
+            <p>📞 <a href="tel:+19705754145">970-575-4145</a> · Reachable 24 hours<br>📍 <a href="https://www.google.com/maps/search/?api=1&query=Heinemann+Images+International+Grand+Junction+CO" target="_blank" rel="noopener">view on map</a></p>
+            <div class="card-links">
+              <a class="site-link" href="https://www.heinemannimages.com" target="_blank" rel="noopener">heinemannimages.com ↗</a>
+            </div>
+          
+          </article><article class="card-featured" data-featured="1">
+            <span class="slot-tag">Featured spot · Open</span>
+            <h3>Featured spot available — <span class="price">$29/mo</span></h3>
+            <p>Every wedding, portrait and product shoot starts with a search. Lead Photography and be the first name they find.</p>
+            <a class="featured-btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Featured%20spot%20—%20Photography">Ask about this spot</a>
+          </article>
+        </div>
+      </section>
+
+      <div class="empty-state" id="emptyState">
+        <h2>Nothing matches that search</h2>
+        <p>No listed business fits those filters yet — the directory is growing every week. Try a shorter search, or browse everything.</p>
+        <button type="button" id="resetFilters2">Show all 28 businesses</button>
+      </div>
+
+      <!-- PRICING -->
+      <section class="pricing" aria-label="Listing upgrades">
+        <h2>Free to be listed. Cheap to stand out.</h2>
+        <p class="pricing-sub">Every Grand Valley business gets a basic listing at no charge — forever. When you're ready for more eyeballs, upgrades are priced for a local budget.</p>
+        <div class="tiers">
+          <div class="tier free">
+            <div class="tier-price">$0</div>
+            <h3>Basic listing</h3>
+            <p>Your name, town, a one-line description and a link to your website — in the directory and searchable by category and town.</p>
+          </div>
+          <div class="tier">
+            <div class="tier-price">$97<span> /year</span></div>
+            <h3>Premium listing</h3>
+            <p>Everything in Basic, plus photos, all your links, a map pin and your hours — the full storefront version of your listing.</p>
+          </div>
+          <div class="tier">
+            <div class="tier-price">$29<span> /mo</span></div>
+            <h3>Featured spot</h3>
+            <p>Top of your category for $29/mo — or own the whole valley, every category, for $99/mo.</p>
+          </div>
+        </div>
+        <p class="pricing-note"><strong>Basic listings are free forever. Claim your listing and it's Premium FREE until the Scoop reaches 500 subscribers — the big card, your photo, hours, and phone.</strong> <a href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing" style="color:#F0B27A;">Email us to claim yours</a>.</p>
+      </section>
+
+      <!-- SPONSOR -->
+      <section class="sponsor" aria-label="Sponsor">
+        <div>
+          <p class="sponsor-tag">Sponsored by</p>
+          <h2>The Buterbaugh Agency</h2>
+          <p>Term life, mortgage protection &amp; final expense — local help protecting Grand Valley families.</p>
+        </div>
+        <div class="sponsor-contact">
+          <span style="font-size:14px; color:var(--ink-soft);">Free, no-pressure quote:</span>
+          <a class="phone" href="tel:+19704380360">970-438-0360</a>
+          <a class="site" href="https://buterbaughagency.com" target="_blank" rel="noopener">buterbaughagency.com ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p><strong>Grand Valley Local Directory</strong> — a Grand Junction Local Scoop project.<br />
+        Local news, events &amp; sports for the Grand Valley, every Mon · Wed · Fri.<br />
+        <a href="https://grandjunctionlocalscoop.beehiiv.com">Subscribe free at grandjunctionlocalscoop.beehiiv.com</a></p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var searchInput = document.getElementById('search');
+        var categorySelect = document.getElementById('categoryFilter');
+        var townSelect = document.getElementById('townFilter');
+        var resultLine = document.getElementById('resultLine');
+        var emptyState = document.getElementById('emptyState');
+        var sections = Array.prototype.slice.call(document.querySelectorAll('.category'));
+        var totalCards = document.querySelectorAll('.card').length;
+
+        function cardText(card) {
+          return (card.textContent || '').toLowerCase();
+        }
+
+        function applyFilters() {
+          var q = searchInput.value.trim().toLowerCase();
+          var cat = categorySelect.value;
+          var town = townSelect.value;
+          var visibleTotal = 0;
+
+          sections.forEach(function (section) {
+            var sectionMatchesCategory = !cat || section.getAttribute('data-category') === cat;
+            var cards = section.querySelectorAll('.card');
+            var visibleInSection = 0;
+
+            cards.forEach(function (card) {
+              var matchesTown = !town || card.getAttribute('data-town') === town;
+              var haystack = cardText(card) + ' ' + (section.getAttribute('data-category-name') || '').toLowerCase();
+              var matchesSearch = !q || haystack.indexOf(q) !== -1;
+              var show = sectionMatchesCategory && matchesTown && matchesSearch;
+              card.hidden = !show;
+              if (show) { visibleInSection++; visibleTotal++; }
+            });
+
+            var featured = section.querySelector('[data-featured]');
+            var sectionVisible = visibleInSection > 0;
+            section.hidden = !sectionVisible;
+            if (featured) {
+              // Featured slot shows with its category when browsing;
+              // hide it during a text search so results stay clean.
+              featured.hidden = !sectionVisible || !!q;
+            }
+          });
+
+          emptyState.classList.toggle('show', visibleTotal === 0);
+
+          if (!q && !cat && !town) {
+            resultLine.textContent = 'Showing all ' + totalCards + ' businesses across the Grand Valley.';
+          } else if (visibleTotal === 0) {
+            resultLine.textContent = 'No businesses match those filters.';
+          } else {
+            resultLine.innerHTML = 'Showing <strong>' + visibleTotal + '</strong> of ' + totalCards + ' businesses. ';
+            var clear = document.createElement('button');
+            clear.type = 'button';
+            clear.textContent = 'Clear filters';
+            clear.addEventListener('click', resetFilters);
+            resultLine.appendChild(clear);
+          }
+        }
+
+        function resetFilters() {
+          searchInput.value = '';
+          categorySelect.value = '';
+          townSelect.value = '';
+          applyFilters();
+          searchInput.focus();
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+        categorySelect.addEventListener('change', applyFilters);
+        townSelect.addEventListener('change', applyFilters);
+        document.getElementById('resetFilters2').addEventListener('click', resetFilters);
+
+        applyFilters();
+      })();
+    </script>
+  </body>
+</html>
