@@ -12,8 +12,74 @@ a{color:#B25420} .wrap{max-width:900px;margin:0 auto;padding:20px}
 .btn{display:inline-block;background:#B25420;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none}
 footer{background:#26201C;color:#FBEFD6;padding:22px 20px;text-align:center;margin-top:30px}
 nav.cats a{display:inline-block;margin:4px 6px 4px 0;background:#fff;border:1px solid #e3d3ae;padding:6px 12px;border-radius:20px;text-decoration:none}
+.topbar{position:sticky;top:0;z-index:20;background:#FBEFD6;padding:16px 0 14px;border-bottom:1px solid #E3CFA5;font-family:"Avenir Next","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+.topbar .wrap{padding-top:0;padding-bottom:0}
+.filters-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:720px){.filters-grid{grid-template-columns:2fr 1fr 1fr}}
+.field label{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#8A7867;margin:0 0 6px}
+.field input,.field select{width:100%;font:inherit;font-size:16px;color:#26201C;background:#FFF9EC;border:1.5px solid #E3CFA5;border-radius:10px;padding:11px 13px;appearance:none;-webkit-appearance:none;box-sizing:border-box}
+.field select{background-image:linear-gradient(45deg,transparent 50%,#B25420 50%),linear-gradient(135deg,#B25420 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+.field input::placeholder{color:#8A7867}
+.field input:focus,.field select:focus{outline:3px solid #B25420;outline-offset:2px}
+.result-line{font-size:14px;color:#57493E;margin:12px 0 0;min-height:1.4em}
+#searchResults{margin-top:4px}
+.sr-item{display:block;background:#FFF9EC;border:1px solid #E3CFA5;border-radius:10px;padding:10px 14px;margin-top:8px;text-decoration:none}
+.sr-item b{color:#26201C;font-family:Georgia,serif;font-size:16px}
+.sr-item span{display:block;color:#57493E;font-size:13px}
+.sr-item:hover{border-color:#B25420}
 </style></head>
 <body><header><p class="brand"><a href="/" style="color:inherit;text-decoration:none">Grand Valley Local Directory</a></p><p>by Grand Junction Local Scoop — free local listings for Grand Junction, Clifton, Fruita, Palisade, Mack, Loma &amp; Whitewater</p></header>
-<div class="wrap"><nav class="cats"><a href="/">⌂ Directory home</a><a href="/restaurants-dining/">Restaurants &amp; Dining</a><a href="/coffee-bakeries-sweets/">Coffee, Bakeries &amp; Sweets</a><a href="/breweries-wineries/">Breweries, Wineries &amp; Distilleries</a><a href="/home-services/">Home Services</a><a href="/auto-care/">Auto Care</a><a href="/health-wellness/">Health &amp; Wellness</a><a href="/pets/">Pets</a><a href="/bikes-outdoors/">Bikes &amp; Outdoors</a><a href="/real-estate-mortgage/">Real Estate &amp; Mortgage</a><a href="/events-venues/">Events &amp; Venues</a><a href="/cleaning-services/">Cleaning Services</a><a href="/photography/">Photography</a><a href="/health-medical/">Health &amp; Medical</a><a href="/hair-beauty-spas/">Hair, Beauty &amp; Spas</a><a href="/legal-financial/">Legal &amp; Financial</a><a href="/shopping-retail/">Shopping &amp; Retail</a><a href="/hotels-lodging/">Hotels &amp; Lodging</a></nav><p><a href="/">← Directory home</a></p><h1>Stone Mechanical Inc</h1><p class="catline"><a href="/home-services/">Home Services</a> · <a href="/home-services/grand-junction/">Home Services in Grand Junction</a> · <a href="/town/grand-junction/">All businesses in Grand Junction</a></p><p>Contracting and home services, Heating and cooling service, 833 Noland Ave</p><p>📞 <a href="tel:+19702425014">970-242-5014</a></p><p><a href="http://stonemechanicalinc.com/" rel="noopener">Visit website</a></p><p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Stone+Mechanical+Inc+Grand+Junction+CO" rel="noopener">Find on Google Maps</a></p><p><a class="btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a></p><nav class="cats"><a href="/">⌂ Directory home</a><a href="/restaurants-dining/">Restaurants &amp; Dining</a><a href="/coffee-bakeries-sweets/">Coffee, Bakeries &amp; Sweets</a><a href="/breweries-wineries/">Breweries, Wineries &amp; Distilleries</a><a href="/home-services/">Home Services</a><a href="/auto-care/">Auto Care</a><a href="/health-wellness/">Health &amp; Wellness</a><a href="/pets/">Pets</a><a href="/bikes-outdoors/">Bikes &amp; Outdoors</a><a href="/real-estate-mortgage/">Real Estate &amp; Mortgage</a><a href="/events-venues/">Events &amp; Venues</a><a href="/cleaning-services/">Cleaning Services</a><a href="/photography/">Photography</a><a href="/health-medical/">Health &amp; Medical</a><a href="/hair-beauty-spas/">Hair, Beauty &amp; Spas</a><a href="/legal-financial/">Legal &amp; Financial</a><a href="/shopping-retail/">Shopping &amp; Retail</a><a href="/hotels-lodging/">Hotels &amp; Lodging</a></nav></div>
+<div class="topbar"><div class="wrap">
+<div class="filters-grid">
+<div class="field"><label for="search">Search the directory</label><input id="search" type="search" placeholder="Try a business name, a town, a category…" autocomplete="off" /></div>
+<div class="field"><label for="categoryFilter">Category</label><select id="categoryFilter"><option value="">All categories</option><option value="/restaurants-dining/">Restaurants &amp; Dining</option><option value="/coffee-bakeries-sweets/">Coffee, Bakeries &amp; Sweets</option><option value="/breweries-wineries/">Breweries, Wineries &amp; Distilleries</option><option value="/home-services/" selected>Home Services</option><option value="/auto-care/">Auto Care</option><option value="/health-wellness/">Health &amp; Wellness</option><option value="/pets/">Pets</option><option value="/bikes-outdoors/">Bikes &amp; Outdoors</option><option value="/real-estate-mortgage/">Real Estate &amp; Mortgage</option><option value="/events-venues/">Events &amp; Venues</option><option value="/cleaning-services/">Cleaning Services</option><option value="/photography/">Photography</option><option value="/health-medical/">Health &amp; Medical</option><option value="/hair-beauty-spas/">Hair, Beauty &amp; Spas</option><option value="/legal-financial/">Legal &amp; Financial</option><option value="/shopping-retail/">Shopping &amp; Retail</option><option value="/hotels-lodging/">Hotels &amp; Lodging</option></select></div>
+<div class="field"><label for="townFilter">Town</label><select id="townFilter"><option value="">All towns</option><option value="/town/grand-junction/" selected>Grand Junction</option><option value="/town/clifton/">Clifton</option><option value="/town/fruita/">Fruita</option><option value="/town/palisade/">Palisade</option><option value="/town/mack/">Mack</option><option value="/town/loma/">Loma</option><option value="/town/whitewater/">Whitewater</option></select></div>
+</div>
+<p class="result-line" id="resultLine" role="status">Search all 1,110 businesses by name — or jump straight to a category or town.</p>
+<div id="searchResults"></div>
+</div></div>
+<div class="wrap"><p><a href="/">← Directory home</a></p><h1>Stone Mechanical Inc</h1><p class="catline"><a href="/home-services/">Home Services</a> · <a href="/home-services/grand-junction/">Home Services in Grand Junction</a> · <a href="/town/grand-junction/">All businesses in Grand Junction</a></p><p>Contracting and home services, Heating and cooling service, 833 Noland Ave</p><p>📞 <a href="tel:+19702425014">970-242-5014</a></p><p><a href="http://stonemechanicalinc.com/" rel="noopener">Visit website</a></p><p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Stone+Mechanical+Inc+Grand+Junction+CO" rel="noopener">Find on Google Maps</a></p><p><a class="btn" href="mailto:grandjunctionlocalscoop@gmail.com?subject=Claim%20my%20directory%20listing">Claim this listing — free</a></p><nav class="cats"><a href="/">⌂ Directory home</a><a href="/restaurants-dining/">Restaurants &amp; Dining</a><a href="/coffee-bakeries-sweets/">Coffee, Bakeries &amp; Sweets</a><a href="/breweries-wineries/">Breweries, Wineries &amp; Distilleries</a><a href="/home-services/">Home Services</a><a href="/auto-care/">Auto Care</a><a href="/health-wellness/">Health &amp; Wellness</a><a href="/pets/">Pets</a><a href="/bikes-outdoors/">Bikes &amp; Outdoors</a><a href="/real-estate-mortgage/">Real Estate &amp; Mortgage</a><a href="/events-venues/">Events &amp; Venues</a><a href="/cleaning-services/">Cleaning Services</a><a href="/photography/">Photography</a><a href="/health-medical/">Health &amp; Medical</a><a href="/hair-beauty-spas/">Hair, Beauty &amp; Spas</a><a href="/legal-financial/">Legal &amp; Financial</a><a href="/shopping-retail/">Shopping &amp; Retail</a><a href="/hotels-lodging/">Hotels &amp; Lodging</a></nav></div>
 <footer><p><strong>Sponsored by The Buterbaugh Agency</strong> — Term life, mortgage protection &amp; final expense.<br>Free, no-pressure quote: 970-438-0360 · <a href="https://buterbaughagency.com" style="color:#FBEFD6">buterbaughagency.com</a></p>
-<p><a class="btn" href="https://grandjunctionlocalscoop.beehiiv.com">Subscribe free to Grand Junction Local Scoop</a></p></footer></body></html>
+<p><a class="btn" href="https://grandjunctionlocalscoop.beehiiv.com">Subscribe free to Grand Junction Local Scoop</a></p></footer>
+<script src="/bizindex.js"></script>
+<script>
+      (function () {
+        var idx = window.BIZINDEX || [];
+        var input = document.getElementById('search');
+        var catSel = document.getElementById('categoryFilter');
+        var townSel = document.getElementById('townFilter');
+        var line = document.getElementById('resultLine');
+        var box = document.getElementById('searchResults');
+        var DEFAULT_LINE = line.textContent;
+        function render() {
+          var q = input.value.trim().toLowerCase();
+          box.innerHTML = '';
+          if (q.length < 2) {
+            line.textContent = q ? 'Keep typing to search all ' + idx.length + ' businesses.' : DEFAULT_LINE;
+            return;
+          }
+          var hits = [];
+          for (var i = 0; i < idx.length; i++) {
+            var b = idx[i];
+            if ((b.n + ' ' + b.t + ' ' + b.c).toLowerCase().indexOf(q) !== -1) hits.push(b);
+          }
+          if (!hits.length) {
+            line.textContent = 'No businesses match that search yet — try a category or town below.';
+            return;
+          }
+          line.textContent = hits.length + (hits.length === 1 ? ' business matches' : ' businesses match') + (hits.length > 20 ? ' — showing the first 20:' : ':');
+          hits.slice(0, 20).forEach(function (b) {
+            var a = document.createElement('a');
+            a.className = 'sr-item'; a.href = b.u;
+            var bold = document.createElement('b'); bold.textContent = b.n;
+            var span = document.createElement('span'); span.textContent = b.t + ' · ' + b.c;
+            a.appendChild(bold); a.appendChild(span);
+            box.appendChild(a);
+          });
+        }
+        input.addEventListener('input', render);
+        catSel.addEventListener('change', function () { if (catSel.value) window.location.href = catSel.value; });
+        townSel.addEventListener('change', function () { if (townSel.value) window.location.href = townSel.value; });
+      })();
+</script>
+</body></html>
