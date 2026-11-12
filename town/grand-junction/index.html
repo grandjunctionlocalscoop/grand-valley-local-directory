@@ -1721,8 +1721,48 @@ nav.cats a{display:inline-block;margin:4px 6px 4px 0;background:#fff;border:1px 
           });
         }
         input.addEventListener('input', render);
-        catSel.addEventListener('change', function () { if (catSel.value) window.location.href = catSel.value; });
-        townSel.addEventListener('change', function () { if (townSel.value) window.location.href = townSel.value; });
+        function selText(sel) { var o = sel.options[sel.selectedIndex]; return o ? o.text : ''; }
+        function slugOf(path) { return path.replace(/^\/|\/$/g, ''); }
+        function goCombined() {
+          var catVal = catSel.value, townVal = townSel.value;
+          var url;
+          if (catVal && townVal) {
+            url = '/' + slugOf(catVal) + '/' + slugOf(townVal).replace(/^town\//, '') + '/';
+          } else if (catVal) {
+            url = catVal;
+          } else if (townVal) {
+            url = townVal;
+          } else {
+            url = '/';
+          }
+          if (url !== window.location.pathname) window.location.href = url;
+        }
+        function prune() {
+          var catLabel = catSel.value ? selText(catSel) : '';
+          var townName = townSel.value ? selText(townSel) : '';
+          var i, j, o, ok;
+          for (i = 0; i < townSel.options.length; i++) {
+            o = townSel.options[i];
+            if (!o.value) { o.disabled = false; continue; }
+            ok = false;
+            for ( j = 0; j < idx.length; j++) {
+              if (idx[j].t === o.text && (!catLabel || idx[j].c === catLabel)) { ok = true; break; }
+            }
+            o.disabled = !ok;
+          }
+          for (i = 0; i < catSel.options.length; i++) {
+            o = catSel.options[i];
+            if (!o.value) { o.disabled = false; continue; }
+            ok = false;
+            for (j = 0; j < idx.length; j++) {
+              if (idx[j].c === o.text && (!townName || idx[j].t === townName)) { ok = true; break; }
+            }
+            o.disabled = !ok;
+          }
+        }
+        catSel.addEventListener('change', goCombined);
+        townSel.addEventListener('change', goCombined);
+        if (idx.length) prune();
       })();
 </script>
 </body></html>
